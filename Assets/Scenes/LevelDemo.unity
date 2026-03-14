@@ -1218,7 +1218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 885264119, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 885264119, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1538,7 +1538,6 @@ PrefabInstance:
       value: SupplyDepotArea
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1473404878683977359, guid: e8f01f2d1640b4862a87a71939178cc5, type: 3}
     - {fileID: 7210667521707768133, guid: e8f01f2d1640b4862a87a71939178cc5, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5855153463403174356, guid: e8f01f2d1640b4862a87a71939178cc5, type: 3}
