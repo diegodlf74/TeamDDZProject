@@ -23,4 +23,21 @@ public class PlayerHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+        Debug.Log($"Max HP increased by {amount}. Max HP: {maxHealth}, Current HP: {currentHealth}");
+    }
+
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+        Debug.Log($"Player healed {amount}. HP: {currentHealth}");
+    }
 }
