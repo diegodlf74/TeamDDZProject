@@ -1221,6 +1221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreeSnake_LODs
       objectReference: {fileID: 0}
+    - target: {fileID: 885264118, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 885264119, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
