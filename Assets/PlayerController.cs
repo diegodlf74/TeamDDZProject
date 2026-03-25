@@ -19,6 +19,21 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
+    [Header("Attack")]
+    public float attackRange = 1.2f;
+    public float attackRadius = 0.6f;
+    public int attackDamage = 1;
+    public LayerMask enemyLayers;
+    public Transform attackPoint;
+
+    [Header("Usable Power-Up")]
+    public UsablePowerUpType equippedPowerUp = UsablePowerUpType.None;
+    public float invisibilityDuration = 5f;
+    public float usableSpeedMultiplier = 2f;
+    public float usableSpeedDuration = 5f;
+
+    private bool isInvisible = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,7 +43,6 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
-
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
@@ -40,6 +54,37 @@ public class PlayerController : MonoBehaviour
 
         nextAttackTime = Time.time + attackCooldown;
         anim.SetTrigger("Attack");
+
+        Invoke(nameof(DoAttackHit), 0.1f);
+    }
+
+    public void OnUseItem(InputValue value)
+    {
+        if (!value.isPressed) return;
+        if (equippedPowerUp == UsablePowerUpType.None) return;
+
+        switch (equippedPowerUp)
+        {
+            case UsablePowerUpType.Invisibility:
+                StartCoroutine(InvisibilityRoutine());
+                break;
+
+            case UsablePowerUpType.SpeedBoost:
+                AddSpeedModifier(usableSpeedMultiplier, usableSpeedDuration);
+                break;
+        }
+
+        equippedPowerUp = UsablePowerUpType.None;
+    }
+
+    public void GiveUsablePowerUp(UsablePowerUpType powerUpType)
+    {
+        equippedPowerUp = powerUpType;
+    }
+
+    public bool IsInvisible()
+    {
+        return isInvisible;
     }
 
     float GetFinalSpeed()
@@ -68,6 +113,55 @@ public class PlayerController : MonoBehaviour
         speedModifiers.Remove(mod);
     }
 
+    IEnumerator InvisibilityRoutine()
+    {
+        if (isInvisible) yield break;
+
+        isInvisible = true;
+
+        Renderer[] renderers = GetComponentsInChildren<Renderer>(true);
+
+        foreach (Renderer r in renderers)
+        {
+            foreach (Material mat in r.materials)
+            {
+                mat.SetFloat("_Surface", 1f);
+                mat.SetFloat("_Blend", 0f);
+                mat.SetOverrideTag("RenderType", "Transparent");
+                mat.renderQueue = 3000;
+
+                if (mat.HasProperty("_BaseColor"))
+                {
+                    Color c = mat.GetColor("_BaseColor");
+                    c.a = 0.2f;
+                    mat.SetColor("_BaseColor", c);
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(invisibilityDuration);
+
+        foreach (Renderer r in renderers)
+        {
+            foreach (Material mat in r.materials)
+            {
+                mat.SetFloat("_Surface", 0f);
+                mat.SetFloat("_Blend", 0f);
+                mat.SetOverrideTag("RenderType", "Opaque");
+                mat.renderQueue = -1;
+
+                if (mat.HasProperty("_BaseColor"))
+                {
+                    Color c = mat.GetColor("_BaseColor");
+                    c.a = 1f;
+                    mat.SetColor("_BaseColor", c);
+                }
+            }
+        }
+
+        isInvisible = false;
+    }
+
     void FixedUpdate()
     {
         Vector3 move = new Vector3(movementX, 0f, movementY);
@@ -79,6 +173,8 @@ public class PlayerController : MonoBehaviour
 
         if (moving)
         {
+            move = move.normalized;
+
             rb.linearVelocity = new Vector3(move.x * finalSpeed, rb.linearVelocity.y, move.z * finalSpeed);
 
             Quaternion targetRot = Quaternion.LookRotation(move);
@@ -90,5 +186,33 @@ public class PlayerController : MonoBehaviour
         }
 
         anim.SetBool("isWalking", moving);
+    }
+
+    private void DoAttackHit()
+    {
+        if (attackPoint == null)
+        {
+            Debug.LogWarning("No attackPoint assigned on PlayerController.");
+            return;
+        }
+
+        Collider[] hits = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayers);
+
+        foreach (Collider hit in hits)
+        {
+            EnemyHealth health = hit.GetComponentInParent<EnemyHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(attackDamage);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }
