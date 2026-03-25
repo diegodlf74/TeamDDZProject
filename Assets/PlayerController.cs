@@ -19,6 +19,14 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
+    [Header("Attack")]
+    public float attackRange = 1.2f;
+    public float attackRadius = 0.6f;
+    public int attackDamage = 1;
+    public LayerMask enemyLayers;
+    public Transform attackPoint; // empty object in front of player
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
         nextAttackTime = Time.time + attackCooldown;
         anim.SetTrigger("Attack");
+
+        Invoke(nameof(DoAttackHit), 0.1f);
     }
 
     float GetFinalSpeed()
@@ -90,5 +100,25 @@ public class PlayerController : MonoBehaviour
         }
 
         anim.SetBool("isWalking", moving);
+    }
+
+    private void DoAttackHit()
+    {
+        if (attackPoint == null)
+        {
+            Debug.LogWarning("No attackPoint assigned on PlayerController.");
+            return;
+        }
+
+        Collider[] hits = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayers);
+
+        foreach (Collider hit in hits)
+        {
+            EnemyHealth health = hit.GetComponentInParent<EnemyHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(attackDamage);
+            }
+        }
     }
 }
