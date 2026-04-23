@@ -20,6 +20,7 @@ public class EnemyMovement : MonoBehaviour
 
     private float nextAttackTime;
     private bool isAttacking;
+    private bool isChasing;
 
     // IMPORTANT: prevents instant multi-hit
     private bool hasDealtDamageThisAttack;
@@ -28,6 +29,9 @@ public class EnemyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+        isChasing = false;
+
+        agent.enabled = false; // 👈 start disabled
 
         agent.stoppingDistance = attackRange;
 
@@ -43,27 +47,33 @@ public class EnemyMovement : MonoBehaviour
     {
         if (player == null) return;
 
-        // Chase when not attacking
-        if (!isAttacking)
+        if (!isChasing)
+        {
+            animator.SetFloat("Speed", 0f);
+            return;
+        }
+
+        if (!isAttacking && agent.enabled && agent.isOnNavMesh)
         {
             agent.isStopped = false;
             agent.SetDestination(player.position);
         }
 
-        // Update walk/run blend
-        animator.SetFloat("Speed", agent.velocity.magnitude);
+        animator.SetFloat("Speed", (agent.enabled && agent.isOnNavMesh) ? agent.velocity.magnitude : 0f);
 
-        if (agent.pathPending) return;
+        if (!agent.enabled || !agent.isOnNavMesh)
+            return;
+
+        if (agent.pathPending)
+            return;
 
         bool closeEnough = agent.remainingDistance <= agent.stoppingDistance + 0.1f;
 
-        // Start attack
         if (!isAttacking && closeEnough && Time.time >= nextAttackTime)
         {
             StartJumpAttack();
         }
 
-        // If currently attacking, check for the moment to deal damage
         if (isAttacking)
         {
             HandleAttackDamage();
@@ -134,6 +144,33 @@ public class EnemyMovement : MonoBehaviour
                 ph.TakeDamage(damage);
                 break; // only hit once
             }
+        }
+    }
+
+    public void EnableChase()
+    {
+        isChasing = true;
+
+        if (!agent.enabled)
+        {
+            agent.enabled = true;
+        }
+
+        if (agent.enabled && agent.isOnNavMesh)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(player.position);
+        }
+    }
+
+    public void DisableChase()
+    {
+        isChasing = false;
+
+        if (agent.enabled && agent.isOnNavMesh)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
         }
     }
 

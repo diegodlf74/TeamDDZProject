@@ -1,15 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Observer : MonoBehaviour
 {
     public Transform player;
-    bool m_IsPlayerInRange;
+    public EnemyMovement enemyMovement;
+
+    public float loseSightDelay = 3f;
+
+    private bool m_IsPlayerInRange;
+    private float loseSightTimer;
+
+    void Start()
+    {
+        if (player == null)
+        {
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null)
+                player = p.transform;
+        }
+
+        if (enemyMovement == null)
+        {
+            enemyMovement = GetComponentInParent<EnemyMovement>();
+        }
+
+        loseSightTimer = loseSightDelay;
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform == player)
+        if (player != null && (other.transform == player || other.transform.IsChildOf(player)))
         {
             m_IsPlayerInRange = true;
         }
@@ -17,7 +37,7 @@ public class Observer : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.transform == player)
+        if (player != null && (other.transform == player || other.transform.IsChildOf(player)))
         {
             m_IsPlayerInRange = false;
         }
@@ -25,11 +45,15 @@ public class Observer : MonoBehaviour
 
     void Update()
     {
+        if (player == null || enemyMovement == null)
+            return;
+
+        bool canSeePlayer = false;
+
         if (m_IsPlayerInRange)
         {
             Vector3 direction = player.position - transform.position + Vector3.up;
 
-            // Draw the ray (green line)
             Debug.DrawRay(transform.position, direction, Color.green);
 
             Ray ray = new Ray(transform.position, direction);
@@ -37,13 +61,27 @@ public class Observer : MonoBehaviour
 
             if (Physics.Raycast(ray, out raycastHit))
             {
-                // Draw hit ray in red up to the hit point
                 Debug.DrawLine(transform.position, raycastHit.point, Color.red);
 
-                if (raycastHit.collider.transform == player)
+                if (raycastHit.collider.transform == player || raycastHit.collider.transform.IsChildOf(player))
                 {
-                    Debug.Log("Player was caught!");
+                    canSeePlayer = true;
                 }
+            }
+        }
+
+        if (canSeePlayer)
+        {
+            loseSightTimer = loseSightDelay;
+            enemyMovement.EnableChase();
+        }
+        else
+        {
+            loseSightTimer -= Time.deltaTime;
+
+            if (loseSightTimer <= 0f)
+            {
+                enemyMovement.DisableChase();
             }
         }
     }
