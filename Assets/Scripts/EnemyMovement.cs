@@ -137,4 +137,14 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    public void OnLand()
+    {
+        // Exists only so the animation event has a receiver.
+    }
+
+    public void OnFootstep()
+    {
+
+    }
+
 }
