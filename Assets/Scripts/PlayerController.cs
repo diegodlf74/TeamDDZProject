@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
+        if (PauseMenu.GameIsPaused) return;
         if (!value.isPressed) return;
         if (Time.time < nextAttackTime) return;
 
