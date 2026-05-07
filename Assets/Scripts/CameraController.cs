@@ -13,6 +13,6 @@ public class CameraController : MonoBehaviour
         Vector3 desired = target.position + offset;
 
         transform.position = Vector3.Lerp(transform.position, desired, smoothSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.Euler(45f, 0f, 0f);
+        transform.rotation = Quaternion.Euler(30f, 0f, 0f);
     }
 }

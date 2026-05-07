@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 885264118, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Name
-      value: TreeSnake_LODs Variant
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 885264118, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_TagString
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Radius
-      value: 0.4532308
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Center.x
@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Center.y
-      value: 0.5332307
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Center.z
@@ -234,7 +234,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   speed: 10
   attackCooldown: 0.5
-  attackRange: 1.2
   attackRadius: 0.6
   attackDamage: 1
   enemyLayers:

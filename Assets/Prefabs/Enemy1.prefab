@@ -196,7 +196,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 300
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -219,10 +219,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   player: {fileID: 0}
   waypoints: []
-  patrolReachDistance: 0.2
+  waypointReachDistance: 0.3
+  patrolStoppingDistance: 0
+  patrolSpeed: 5
   attackRange: 2
   attackCooldown: 1.5
   attackDuration: 1
+  chaseSpeed: 10
   damage: 1
   hitRadius: 1
   hitPoint: {fileID: 0}
@@ -239,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 3
+  enemyTracker: {fileID: 0}
 --- !u!4 &8786099106286562017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 73ffbc06802a247cfb1b26f4ee67eba8, type: 3}

@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     public float attackRange = 0.8f;
     public float attackCooldown = 1.5f;
     public float attackDuration = 1.0f;
-    public float chaseSpeed = 3.5f;
+    public float chaseSpeed = 5f;
 
     [Header("Damage")]
     public int damage = 1;
