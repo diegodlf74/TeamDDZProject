@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
     public float attackCooldown = 0.5f;
     private float nextAttackTime = 0f;
 
+    [Header("Sound Effects")]
+    public AudioSource sfxSource;
+    public AudioClip attackSound;
+    public AudioClip hitConnectSound;
+
     private Animator anim;
 
     [Header("Attack")]
@@ -48,6 +53,11 @@ public class PlayerController : MonoBehaviour
         if (Time.time < nextAttackTime) return;
 
         nextAttackTime = Time.time + attackCooldown;
+
+        if (attackSound != null && sfxSource != null)
+            sfxSource.PlayOneShot(attackSound);
+
+
         anim.SetTrigger("Attack");
 
         Invoke(nameof(DoAttackHit), 0.1f);
@@ -113,6 +123,8 @@ public class PlayerController : MonoBehaviour
 
         Collider[] hits = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayers);
 
+        bool hitEnemy = false;
+
         foreach (Collider hit in hits)
         {
             EnemyHealth health = hit.GetComponentInParent<EnemyHealth>();
@@ -121,5 +133,9 @@ public class PlayerController : MonoBehaviour
                 health.TakeDamage(attackDamage);
             }
         }
+
+        if (hitEnemy && hitConnectSound != null && sfxSource != null)
+            sfxSource.PlayOneShot(hitConnectSound);
     }
 }
+

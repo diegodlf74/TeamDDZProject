@@ -5,6 +5,10 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
 
+    [Header("Sound Effects")]
+    public AudioSource sfxSource;
+    public AudioClip takeDamageSound;
+
     public GameOverScript gameOverScript;
 
     void Awake()
@@ -15,12 +19,15 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+
+        if (takeDamageSound != null && sfxSource != null)
+            sfxSource.PlayOneShot(takeDamageSound);
+
         Debug.Log($"Player took {amount} damage. HP: {currentHealth}");
 
         if (currentHealth <= 0)
         {
             Debug.Log("Player died!");
-            // You can reload scene, respawn, etc.
 
             if (gameOverScript != null)
             {
