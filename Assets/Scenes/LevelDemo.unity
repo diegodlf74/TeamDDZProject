@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1491,9 +1491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1080b286c967a43bda4dd3ac14726a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  sfxSource: {fileID: 0}
-  attackSound: {fileID: 0}
-  hitConnectSound: {fileID: 0}
   pauseMenuUI: {fileID: 1773684003}
 --- !u!1001 &179049931
 PrefabInstance:
@@ -8562,7 +8559,7 @@ Transform:
   m_GameObject: {fileID: 1588160589}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -123.000015, y: 0, z: -44.94}
+  m_LocalPosition: {x: -123.000015, y: 0.02, z: -44.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

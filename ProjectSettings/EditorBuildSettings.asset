@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossFight.unity
     guid: f53ac33ed82174847be43deed6c9f8cb
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 746394f09ee4f6346aca6dfcd0b7e2b6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Center.y
-      value: 0.53
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Center.z
@@ -145,6 +145,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 885264118, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4407278448814311905}
+    - targetCorrespondingSourceObject: {fileID: 885264118, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7840220972160553176}
   m_SourcePrefab: {fileID: 100100000, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
 --- !u!1 &4626743009658457832 stripped
 GameObject:
@@ -234,6 +237,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   speed: 10
   attackCooldown: 0.5
+  sfxSource: {fileID: 7840220972160553176}
+  attackSound: {fileID: 8300000, guid: 2d053236f2a284627a5ee79d551cb0e7, type: 3}
+  hitConnectSound: {fileID: 8300000, guid: 3468dfd81d95a46f3a8b74fe60071eaf, type: 3}
   attackRadius: 0.6
   attackDamage: 1
   enemyLayers:
@@ -254,6 +260,106 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 2
   currentHealth: 2
+  sfxSource: {fileID: 7840220972160553176}
+  takeDamageSound: {fileID: 8300000, guid: 253e3664c9e26475ba401b71bd737103, type: 3}
+  gameOverScript: {fileID: 0}
+--- !u!82 &7840220972160553176
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626743009658457832}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.153
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &4626743009658457833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 885264119, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}

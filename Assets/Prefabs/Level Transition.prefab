@@ -66,6 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad92325dc12c47348b603dd1557f1950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelTransition
-  fadeImage: {fileID: 0}
+  fadeImage: {fileID: 7849733559422450924, guid: df835ae13d131704bbc382ce0c09c1a4, type: 3}
   fadeDuration: 1
   nextSceneName: BossFight

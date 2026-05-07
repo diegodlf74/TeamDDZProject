@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     {
         print("Playing Game");
         Time.timeScale = 1f;
-        SceneManager.LoadScene("LevelDemo");
+        SceneManager.LoadScene("Level1");
     }
 
     public void Controls()
