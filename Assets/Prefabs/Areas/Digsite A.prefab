@@ -2641,9 +2641,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   player: {fileID: 0}
+  waypoints: []
+  waypointReachDistance: 0.3
+  patrolStoppingDistance: 0
+  patrolSpeed: 2.5
   attackRange: 2
   attackCooldown: 1.5
   attackDuration: 1
+  chaseSpeed: 5
   damage: 1
   hitRadius: 1
   hitPoint: {fileID: 0}
@@ -2660,6 +2665,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 3
+  sfxSource: {fileID: 0}
+  takeDamageSound: {fileID: 0}
+  enemyTracker: {fileID: 0}
 --- !u!1 &2002202585479920351
 GameObject:
   m_ObjectHideFlags: 0
@@ -9477,9 +9485,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   player: {fileID: 0}
+  waypoints: []
+  waypointReachDistance: 0.3
+  patrolStoppingDistance: 0
+  patrolSpeed: 2.5
   attackRange: 2
   attackCooldown: 1.5
   attackDuration: 1
+  chaseSpeed: 5
   damage: 1
   hitRadius: 1
   hitPoint: {fileID: 0}
@@ -9496,6 +9509,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 3
+  sfxSource: {fileID: 0}
+  takeDamageSound: {fileID: 0}
+  enemyTracker: {fileID: 0}
 --- !u!1 &6714845661444664090
 GameObject:
   m_ObjectHideFlags: 0
@@ -9978,8 +9994,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18.4, y: 1, z: 92.08571}
-  m_Center: {x: 0, y: 0, z: 5.4571433}
+  m_Size: {x: 21.6, y: 1, z: 64.3}
+  m_Center: {x: 0, y: 0, z: 19.6}
 --- !u!1 &6978033779139365697
 GameObject:
   m_ObjectHideFlags: 0
@@ -10792,9 +10808,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   player: {fileID: 0}
+  waypoints: []
+  waypointReachDistance: 0.3
+  patrolStoppingDistance: 0
+  patrolSpeed: 2.5
   attackRange: 2
   attackCooldown: 1.5
   attackDuration: 1
+  chaseSpeed: 5
   damage: 1
   hitRadius: 1
   hitPoint: {fileID: 0}
@@ -10811,6 +10832,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 3
+  sfxSource: {fileID: 0}
+  takeDamageSound: {fileID: 0}
+  enemyTracker: {fileID: 0}
 --- !u!1 &7443026919168222063
 GameObject:
   m_ObjectHideFlags: 0

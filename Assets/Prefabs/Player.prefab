@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Height
-      value: 1.41
+      value: 2.51
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Radius
@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Center.y
-      value: 0.77
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Center.z
@@ -109,7 +109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_Direction
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 885264120, guid: 528602c00beb95d4a93b5028538c8d4a, type: 3}
       propertyPath: m_IsTrigger
@@ -260,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 2
   currentHealth: 2
+  healthUI: {fileID: 0}
   sfxSource: {fileID: 7840220972160553176}
   takeDamageSound: {fileID: 8300000, guid: 253e3664c9e26475ba401b71bd737103, type: 3}
   gameOverScript: {fileID: 0}

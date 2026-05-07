@@ -58,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
     public void IncreaseMaxHealth(int amount)
     {
         maxHealth += amount;
-        currentHealth = maxHealth; // or keep Mathf.Min if you don't want full heal
+        currentHealth = currentHealth+1; // or keep Mathf.Min if you don't want full heal
 
         SaveHealth();
 

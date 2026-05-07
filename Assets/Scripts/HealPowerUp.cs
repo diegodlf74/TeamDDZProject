@@ -10,7 +10,7 @@ public class HealPowerUp : MonoBehaviour
 
         if (playerHealth != null && playerHealth.currentHealth < playerHealth.maxHealth)
         {
-            playerHealth.Heal(healAmount);
+            playerHealth.Heal(playerHealth.maxHealth-playerHealth.currentHealth);
             Destroy(gameObject);
         }
     }
