@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         print("Returning to menu");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()
