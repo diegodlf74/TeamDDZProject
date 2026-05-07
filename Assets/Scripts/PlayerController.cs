@@ -20,20 +20,18 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     [Header("Attack")]
-    public float attackRange = 1.2f;
     public float attackRadius = 0.6f;
     public int attackDamage = 1;
     public LayerMask enemyLayers;
-    public Transform attackPoint; // empty object in front of player
+    public Transform attackPoint;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
     }
 
-    void OnMove(InputValue movementValue)
+    private void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
 
@@ -43,17 +41,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-        if (PauseMenu.GameIsPaused) return;
         if (!value.isPressed) return;
         if (Time.time < nextAttackTime) return;
 
         nextAttackTime = Time.time + attackCooldown;
+
         anim.SetTrigger("Attack");
 
         Invoke(nameof(DoAttackHit), 0.1f);
     }
 
-    float GetFinalSpeed()
+    private float GetFinalSpeed()
     {
         float finalSpeed = speed;
 
@@ -73,13 +71,13 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(RemoveModifier(mod));
     }
 
-    IEnumerator RemoveModifier(SpeedModifier mod)
+    private IEnumerator RemoveModifier(SpeedModifier mod)
     {
         yield return new WaitForSeconds(mod.duration);
         speedModifiers.Remove(mod);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Vector3 move = new Vector3(movementX, 0f, movementY);
         bool moving = move.sqrMagnitude > 0.01f;
@@ -90,10 +88,23 @@ public class PlayerController : MonoBehaviour
 
         if (moving)
         {
-            rb.linearVelocity = new Vector3(move.x * finalSpeed, rb.linearVelocity.y, move.z * finalSpeed);
+            move = move.normalized;
+
+            rb.linearVelocity = new Vector3(
+                move.x * finalSpeed,
+                rb.linearVelocity.y,
+                move.z * finalSpeed
+            );
 
             Quaternion targetRot = Quaternion.LookRotation(move);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, 10f * Time.fixedDeltaTime));
+
+            rb.MoveRotation(
+                Quaternion.Slerp(
+                    rb.rotation,
+                    targetRot,
+                    10f * Time.fixedDeltaTime
+                )
+            );
         }
         else
         {
@@ -111,15 +122,46 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Collider[] hits = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayers);
+        Collider[] hits = Physics.OverlapSphere(
+            attackPoint.position,
+            attackRadius,
+            enemyLayers
+        );
+
+        HashSet<BossObject> damagedBossObjects = new HashSet<BossObject>();
+        HashSet<BossHealth> damagedBosses = new HashSet<BossHealth>();
+        HashSet<EnemyHealth> damagedEnemies = new HashSet<EnemyHealth>();
 
         foreach (Collider hit in hits)
         {
-            EnemyHealth health = hit.GetComponentInParent<EnemyHealth>();
-            if (health != null)
+            BossObject bossObject = hit.GetComponentInParent<BossObject>();
+            if (bossObject != null && !damagedBossObjects.Contains(bossObject))
             {
-                health.TakeDamage(attackDamage);
+                bossObject.TakeDamage(attackDamage);
+                damagedBossObjects.Add(bossObject);
+            }
+
+            BossHealth bossHealth = hit.GetComponentInParent<BossHealth>();
+            if (bossHealth != null && !damagedBosses.Contains(bossHealth))
+            {
+                bossHealth.TakeDamage(attackDamage);
+                damagedBosses.Add(bossHealth);
+            }
+
+            EnemyHealth enemyHealth = hit.GetComponentInParent<EnemyHealth>();
+            if (enemyHealth != null && !damagedEnemies.Contains(enemyHealth))
+            {
+                enemyHealth.TakeDamage(attackDamage);
+                damagedEnemies.Add(enemyHealth);
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }

@@ -5,7 +5,10 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
 
-    void Awake()
+    [Header("Level Exit")]
+    public EnemyTracker enemyTracker;
+
+    private void Awake()
     {
         currentHealth = maxHealth;
     }
@@ -13,6 +16,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+
         Debug.Log($"{name} took {amount} damage. HP: {currentHealth}");
 
         if (currentHealth <= 0)
@@ -21,9 +25,13 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    private void Die()
     {
-        // simple death
+        if (enemyTracker != null)
+        {
+            enemyTracker.EnemyDied();
+        }
+
         Destroy(gameObject);
     }
 }

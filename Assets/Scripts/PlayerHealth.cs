@@ -5,8 +5,6 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
 
-    public GameOverScript gameOverScript;
-
     void Awake()
     {
         currentHealth = maxHealth;
@@ -22,14 +20,7 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Player died!");
             // You can reload scene, respawn, etc.
 
-            if (gameOverScript != null)
-            {
-                gameOverScript.GameOver();
-            }
-            else
-            {
-                Debug.LogError("GameOverScript is not assigned on PlayerHealth!");
-            }
+            Destroy(gameObject);
         }
     }
 
