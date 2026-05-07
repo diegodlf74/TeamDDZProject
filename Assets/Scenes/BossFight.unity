@@ -215,8 +215,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38d12fa5533c38449be334267c7e0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossObject
-  health: 3
+  health: 6
   bossHealth: {fileID: 2081266057}
+  explosionPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  explosionDelay: 1.5
+  explosionRadius: 3
+  explosionDamage: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!65 &103830242
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -833,125 +840,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffcba8263e41b5345b6a7132b80798de, type: 3}
---- !u!1001 &942506902
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_Name
-      value: GoldPile (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 942506905}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 942506904}
-  m_SourcePrefab: {fileID: 100100000, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
---- !u!1 &942506903 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3661d9bc416d1ca43ba806c4fd419615, type: 3}
-  m_PrefabInstance: {fileID: 942506902}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &942506904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942506903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38d12fa5533c38449be334267c7e0dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossObject
-  health: 3
-  bossHealth: {fileID: 2081266057}
---- !u!65 &942506905
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942506903}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.217162, y: 2.2811894, z: 3.1182678}
-  m_Center: {x: -0.00000011920929, y: 0.2532319, z: 0.00000011920929}
 --- !u!1001 &1001347661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1048,8 +936,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38d12fa5533c38449be334267c7e0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossObject
-  health: 3
+  health: 6
   bossHealth: {fileID: 2081266057}
+  explosionPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  explosionDelay: 1.5
+  explosionRadius: 3
+  explosionDamage: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!65 &1001347664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1706,8 +1601,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38d12fa5533c38449be334267c7e0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossObject
-  health: 3
+  health: 6
   bossHealth: {fileID: 2081266057}
+  explosionPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  explosionDelay: 1.5
+  explosionRadius: 3
+  explosionDamage: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!65 &1462768524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2025,8 +1927,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ecc79d088404c640a61fe74de714ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  objectsRequired: 4
-  shieldVisual: {fileID: 0}
+  maxHealth: 5
+  objectsRequired: 3
+  shieldVisual: {fileID: 1444638899229730, guid: 18ed84bba105fb0419e3b2b89496b375, type: 3}
+  explosionPrefab: {fileID: 6033131393938356195, guid: 94f024eff98a91f4ba3e0ec32e0fe85f, type: 3}
+  player: {fileID: 1504003162}
+  explosionAttackDelay: 1
+  explosionAttackCooldown: 3
+  weakExplosionDamage: 1
+  strongExplosionDamage: 3
 --- !u!65 &2081266058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2129,4 +2038,3 @@ SceneRoots:
   - {fileID: 487734837}
   - {fileID: 1001347661}
   - {fileID: 103830239}
-  - {fileID: 942506902}

@@ -30,13 +30,9 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Player died!");
 
             if (gameOverScript != null)
-            {
                 gameOverScript.GameOver();
-            }
-            else
-            {
-                Debug.LogError("GameOverScript is not assigned on PlayerHealth!");
-            }
+
+            Destroy(gameObject);
         }
     }
 

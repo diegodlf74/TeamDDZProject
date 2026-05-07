@@ -9,7 +9,10 @@ public class EnemyHealth : MonoBehaviour
     public AudioSource sfxSource;
     public AudioClip takeDamageSound;
 
-    void Awake()
+    [Header("Level Exit")]
+    public EnemyTracker enemyTracker;
+
+    private void Awake()
     {
         currentHealth = maxHealth;
     }
@@ -29,8 +32,13 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    private void Die()
     {
+        if (enemyTracker != null)
+        {
+            enemyTracker.EnemyDied();
+        }
+
         Destroy(gameObject);
     }
 }
