@@ -7210,7 +7210,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.511
+  m_Volume: 0.106
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7309,9 +7309,6 @@ MonoBehaviour:
   audioSource: {fileID: 1865426740}
   mainMenuMusic: {fileID: 8300000, guid: 5c7e161a571b84e3584c471575a6b9ef, type: 3}
   levelMusic: {fileID: 8300000, guid: b3d9e58aa9c9140509f153eacb79ab92, type: 3}
-  sfxSource: {fileID: 0}
-  attackSound: {fileID: 0}
-  hitConnectSound: {fileID: 0}
   normalPitch: 1
   pausedPitch: 0.6
 --- !u!4 &1865426742

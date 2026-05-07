@@ -6,12 +6,12 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
 
-    [Header("Sound Effects")]
-    public AudioSource sfxSource;
-    public AudioClip attackSound;
-    public AudioClip hitConnectSound;
-
     public GameObject pauseMenuUI;
+
+    void Start()
+    {
+        GameIsPaused = false;
+    }
 
     // Update is called once per frame
     void Update()
