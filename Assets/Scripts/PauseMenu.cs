@@ -5,7 +5,13 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
+
     public GameObject pauseMenuUI;
+
+    void Start()
+    {
+        GameIsPaused = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,6 +33,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        MusicManager.Instance.SetPausedMusic(false);
     }
 
     void Pause()
@@ -34,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        MusicManager.Instance.SetPausedMusic(true);
     }
 
     public void LoadMenu()
@@ -41,6 +49,7 @@ public class PauseMenu : MonoBehaviour
         print("Returning to menu");
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+        MusicManager.Instance.SetPausedMusic(false);
     }
 
     public void QuitGame()

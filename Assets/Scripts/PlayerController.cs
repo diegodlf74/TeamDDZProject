@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
     public float attackCooldown = 0.5f;
     private float nextAttackTime = 0f;
 
+    [Header("Sound Effects")]
+    public AudioSource sfxSource;
+    public AudioClip attackSound;
+    public AudioClip hitConnectSound;
+
     private Animator anim;
 
     [Header("Attack")]
@@ -45,6 +50,9 @@ public class PlayerController : MonoBehaviour
         if (Time.time < nextAttackTime) return;
 
         nextAttackTime = Time.time + attackCooldown;
+
+        if (attackSound != null && sfxSource != null)
+            sfxSource.PlayOneShot(attackSound);
 
         anim.SetTrigger("Attack");
 
@@ -132,6 +140,8 @@ public class PlayerController : MonoBehaviour
         HashSet<BossHealth> damagedBosses = new HashSet<BossHealth>();
         HashSet<EnemyHealth> damagedEnemies = new HashSet<EnemyHealth>();
 
+        bool hitEnemy = false;
+
         foreach (Collider hit in hits)
         {
             BossObject bossObject = hit.GetComponentInParent<BossObject>();
@@ -139,6 +149,7 @@ public class PlayerController : MonoBehaviour
             {
                 bossObject.TakeDamage(attackDamage);
                 damagedBossObjects.Add(bossObject);
+                hitEnemy = true;
             }
 
             BossHealth bossHealth = hit.GetComponentInParent<BossHealth>();
@@ -146,6 +157,7 @@ public class PlayerController : MonoBehaviour
             {
                 bossHealth.TakeDamage(attackDamage);
                 damagedBosses.Add(bossHealth);
+                hitEnemy = true;
             }
 
             EnemyHealth enemyHealth = hit.GetComponentInParent<EnemyHealth>();
@@ -153,8 +165,12 @@ public class PlayerController : MonoBehaviour
             {
                 enemyHealth.TakeDamage(attackDamage);
                 damagedEnemies.Add(enemyHealth);
+                hitEnemy = true;
             }
         }
+
+        if (hitEnemy && hitConnectSound != null && sfxSource != null)
+            sfxSource.PlayOneShot(hitConnectSound);
     }
 
     private void OnDrawGizmosSelected()
